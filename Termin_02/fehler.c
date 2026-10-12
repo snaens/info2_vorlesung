@@ -21,10 +21,10 @@ void kopiereString1()
 	char *stringZgr1 = string1;
 	char *stringZgr2 = string2;
 
-	while((*stringZgr2++ = *stringZgr1++) != '\0');
+	while((*stringZgr2++ = *stringZgr1++) != '\0');  // equates to (*stringZgr1 != '\0')
 
-	printf(string1);
-	printf(string2);
+	printf(string1); // 123456\n
+	printf(string2); // 1234xxx   !buffer overflow
 }
 
 void kopiereString2()
@@ -36,8 +36,8 @@ void kopiereString2()
 
 	while((*stringZgr1++ = *stringZgr2++) != '\0');
 
-	printf(string1);
-	printf(string2);
+	printf(string1); //789\n\06\n
+	printf(string2); //789\n
 }
 
 void kopiereString3()
@@ -45,20 +45,22 @@ void kopiereString3()
 	char string1[] = "123456\n";
 	char string2[] = "789\n";
 
-	while((*string1++ = *string2++) != '\0');
+	// anfangsaddresse statisch -> darf nicht geändert werden
+	// while((*string1++ = *string2++) != '\0');
 
-	printf(string1);
+	printf(string1); //⚡
 	printf(string2);
 }
 
 void kopiereString4()
 {
+	// sind jetzt literale, in read-only memory gespeichert
 	char *string1 = "123456\n";
 	char *string2 = "789\n";
 
 	while((*string1++ = *string2++) != '\0');
 
-	printf(string1);
+	printf(string1); //⚡
 	printf(string2);
 }
 

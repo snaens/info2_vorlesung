@@ -1,0 +1,11 @@
+- Strings null terminated in c `'h', 'i', '\0'`
+  - buffer overflow commonly occurs because this is missing 
+- const variables are stored in a separate (read-only) memory location
+  - `char* str = "jazz";` does not need `malloc()`
+  - somtimes also directly in assembly - depends on what the compiler optimizes 
+- Pointer is 8 Bytes
+- Passing arrays to functions *always* degenerates them into pointers
+  - `void y(char x[]) { sizeof(x) }`     will return 8, for a pointer
+  - `void y(char x[10]) { sizeof(x) }`   will return 8, for a pointer
+  - `void y(char x[10][]) { sizeof(x) }` will return 10, for the fist element
+
