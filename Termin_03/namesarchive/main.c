@@ -18,13 +18,11 @@
 
 char *inputName(const char *promptText, char *buffer, unsigned int bufferSize);
 
-int main()
-{
+int main() {
     char buffer[MAX_BUFFER_LEN];
     const char *filePath = "names.txt";
 
-    if(!loadArchive(filePath))
-    {
+    if (!loadArchive(filePath)) {
         printf("Die Textdatei %s konnte nicht geladen werden.\n", filePath);
     }
 
@@ -32,9 +30,8 @@ int main()
     printNames();
     printf("\n");
 
-    while((inputName("Namen entfernen: ", buffer, MAX_BUFFER_LEN) != NULL) && (strlen(buffer) > 0))
-    {
-        if(removeName(buffer))
+    while ((inputName("Namen entfernen: ", buffer, MAX_BUFFER_LEN) != NULL) && (strlen(buffer) > 0)) {
+        if (removeName(buffer))
             printf("%s wurde aus dem Archiv entfernt.\n", buffer);
         else
             printf("Fehler! %s konnte nicht gefunden werden.\n", buffer);
@@ -44,12 +41,9 @@ int main()
     printNames();
     printf("\n");
 
-    if(saveArchive(filePath))
-    {
+    if (saveArchive(filePath)) {
         printf("Archiv erfolgreich unter %s gespeichert.\n", filePath);
-    }
-    else
-    {
+    } else {
         printf("Fehler beim Speichern des Archivs unter %s.\n", filePath);
     }
 
@@ -61,20 +55,17 @@ int main()
     return EXIT_SUCCESS;
 }
 
-char *inputName(const char *promptText, char *buffer, unsigned int bufferSize)
-{
+char *inputName(const char *promptText, char *buffer, unsigned int bufferSize) {
     printf("%s", promptText);
-    if(fgets(buffer, bufferSize, stdin) != NULL)
-    {
-        if(buffer[strlen(buffer)-1] == '\n')
-            buffer[strlen(buffer)-1] = '\0';
+    if (fgets(buffer, bufferSize, stdin) != NULL) {
+        if (buffer[strlen(buffer) - 1] == '\n')
+            buffer[strlen(buffer) - 1] = '\0';
         else
-            while(getchar() != '\n') {}
+            while (getchar() != '\n') {
+            }
 
         return buffer;
-    }
-    else
-    {
+    } else {
         return NULL;
     }
 }
